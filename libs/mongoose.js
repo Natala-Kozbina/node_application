@@ -1,7 +1,7 @@
 const mongoose    = require('mongoose'),
-    log = require(INCPATH + '/log')(module),
-    config = require(INCPATH + '/config');
-    Q = require('q');
+      log = require(INCPATH + '/log')(module),
+      config = require(INCPATH + '/config');
+      Q = require('q');
 
 mongoose.connect(config.get('db'));
 const db = mongoose.connection;
@@ -15,7 +15,7 @@ db.once('open', function callback () {
 
 const Schema = mongoose.Schema;
 
-var User = new Schema({
+const User = new Schema({
     name: { type: String, default : '' }
 });
 

@@ -1,21 +1,21 @@
-const path = require('path');
+const log = require( INCPATH + '/log')(module);
+const express = require('express');
+const router = express.Router();
+const UserModel = require(INCPATH + '/mongoose').UserModel;
 
+router.get("/test", function(req, res) {
+    const user = UserModel({
+        name: 'test'
+    });
 
-// app - это мой экспресс
-module.exports = function(app) {
+    UserModel.find((err, users) => {
+        if(err) {
+            log.error('Error find users in Mongo');
+        }
+        log.info('Users finds');
+        console.log(users);
+        res.end(JSON.stringify(users));
+    });
+});
 
-    // route for home page
-    app.get("/api/test", function(req, res) {
-        console.log(res);
-        res.send('отправляю данные');
-        // res.sendFile(path.resolve( publicPath , 'index.html' ));
-    });
-    // route for showing the profile page
-    app.get('/profile', function(req, res) {
-        console.log(res);
-    });
-    // route for logging out
-    app.get('/logout', function(req, res) {
-        console.log(res);
-    });
-};
+module.exports = router;
