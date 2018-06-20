@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <script>
+     var http = new XMLHttpRequest();
+     http.open('GET', 'http://localhost:3000/api/test', true);
+     http.send()
+     http.onreadystatechange = function() {
+         if (this.readyState != 4) return;
+
+         // по окончании запроса доступны:
+         // status, statusText
+         // responseText, responseXML (при content-type: text/xml)
+
+         if (this.status != 200) {
+             // обработать ошибку
+             alert('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
+             return;
+         }
+     }
+ </script>
+</body>
+</html>

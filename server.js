@@ -8,6 +8,9 @@ const bodyParser = require('body-parser'); //  помогает читать т�
 const config = require( INCPATH + '/config' ); //  инжектим отдельный файл
 const log = require( INCPATH + '/log')(module); // лог это функция. которая вызывается с текущим моделем к которому подключен
 const UserModel = require(INCPATH + '/mongoose').UserModel;
+const cors = require('cors');
+
+app.use(cors());
 // app.use ->  это мидле варе - настройка моего сервера
 app.use(express.static(__dirname)); // читает все статические файлы
 app.use(bodyParser.json()); // инициализирую парсер
